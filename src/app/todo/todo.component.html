@@ -1,0 +1,12 @@
+<form [formGroup]="todoForm" (submit)="handleFormSubmit($event)">
+  <mat-form-field class="example-full-width">
+    <label>Favorite food</label>
+    <input
+      matInput
+      placeholder="Ex. Pizza"
+      value="Sushi"
+      formControlName="data"
+    />
+  </mat-form-field>
+  <button mat-raised-button>Basic</button>
+</form>
