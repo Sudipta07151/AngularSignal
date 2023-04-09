@@ -1,1 +1,11 @@
-<p>completed works!</p>
+<mat-chip-option
+  style="background-color: green; color: white; font-weight: bold"
+  selected
+  >COMPLETED TODOS</mat-chip-option
+>
+<div *ngIf="todolist.length == 0">NO COMPLETED TODO's TO DISPLAY</div>
+<div *ngIf="todolist.length > 0">
+  <ng-container *ngFor="let todo of todolist">
+    <app-todo [todo]="todo"></app-todo>
+  </ng-container>
+</div>

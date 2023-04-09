@@ -1,48 +1,24 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, Input } from '@angular/core';
 import { TodoListSignals } from 'src/signals/todolist';
-import { Todo } from 'src/models/Todo';
-import { FormServicesService } from '../utils/form-services.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent {
-  @Input() formControlInputs: any;
-  todoForm: any;
-
   constructor(
-    private fb: FormBuilder,
     private todoListSignals: TodoListSignals,
-    private formService: FormServicesService
+    private router: Router
   ) {}
-  ngOnInit() {
-    console.log(this.todoForm.controls);
+  @Input() todo: any;
+  ngOnInit() {}
+  handleComplete(val: any) {
+    console.log(val);
+    this.todoListSignals.markTodoAsComplete(val);
   }
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-    console.log(this.formControlInputs);
-    this.todoForm = this.formService.createForm(this.formControlInputs);
-  }
-  handleFormSubmit(e: any) {
-    e.preventDefault();
-    if (this.todoForm.status == 'VALID') {
-      console.log(this.todoForm.value);
-      const todoData: Todo = {
-        id: '',
-        data: this.todoForm.value.data ? this.todoForm.value.data : '',
-        endTime: this.todoForm.value.endTime ? this.todoForm.value.endTime : '',
-        endDate: this.todoForm.value.endDate
-          ? new Date(this.todoForm.value.endDate)
-          : new Date(),
-        status: this.todoForm.value.status ? this.todoForm.value.status : true,
-        timeCreated: this.todoForm.value.timeCreated
-          ? new Date(this.todoForm.value.timeCreated)
-          : new Date(),
-      };
-      this.todoListSignals.setTodoListData(todoData);
-      console.log(this.todoListSignals.getTodoListData());
-    } else console.log('Form is still invalid');
+  handleEdit(val: any) {
+    console.log(val);
+    this.router.navigate(['AddTodo'], { state: { data: val, type: 'EDIT' } });
   }
 }

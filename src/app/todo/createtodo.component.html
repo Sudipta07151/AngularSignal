@@ -1,0 +1,79 @@
+<app-bodywrapper>
+  <form [formGroup]="todoForm" (submit)="handleFormSubmit($event)">
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile>
+        <mat-form-field class="example-full-width">
+          <label>TODO</label>
+          <input
+            matInput
+            placeholder="Prepare assignment"
+            formControlName="data"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>TODO END DATE</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            readonly
+            formControlName="endDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <!-- <mat-form-field class="example-full-width">
+          <mat-label>COMPLETE BY</mat-label>
+          <input matInput placeholder="Complete By" type="time" />
+        </mat-form-field> -->
+        <mat-form-field>
+          <input
+            matInput
+            name="selected_time_B"
+            [format]="24"
+            formControlName="endTime"
+            [ngxMatTimepicker]="pickerB"
+            placeholder="16:00"
+            readonly
+          />
+          <mat-icon matSuffix (click)="pickerB.open()"> watch_later </mat-icon>
+        </mat-form-field>
+        <ngx-mat-timepicker color="accent" #pickerB></ngx-mat-timepicker>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button
+          *ngIf="!update"
+          mat-stroked-button
+          style="
+            background-color: rgb(107, 197, 4);
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+          "
+        >
+          CREATE
+        </button>
+        <button
+          *ngIf="update"
+          mat-stroked-button
+          style="
+            background-color: rgb(7, 99, 227);
+            padding: 10px;
+            font-weight: bold;
+            color: white;
+            border-radius: 5px;
+          "
+        >
+          UPDATE
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</app-bodywrapper>

@@ -1,0 +1,20 @@
+<mat-grid-list cols="2" rowHeight="600px">
+  <mat-grid-tile>
+    <app-pending [todolist]="pending"></app-pending>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-completed [todolist]="completed"></app-completed>
+  </mat-grid-tile>
+</mat-grid-list>
+<div>
+  <button
+    class="example-button-container"
+    mat-fab
+    disabled
+    raised
+    (click)="handleClickAddTodo()"
+    aria-label="Example icon button with a heart icon"
+  >
+    <mat-icon (click)="handleClickAddTodo()" style="color: white">add</mat-icon>
+  </button>
+</div>

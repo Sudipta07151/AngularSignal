@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-completed',
   templateUrl: './completed.component.html',
-  styleUrls: ['./completed.component.scss']
+  styleUrls: ['./completed.component.scss'],
 })
 export class CompletedComponent {
-
+  @Input() todolist: any;
+  constructor() {}
 }

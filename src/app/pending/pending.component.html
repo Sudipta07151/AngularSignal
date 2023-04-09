@@ -1,1 +1,11 @@
-<p>pending works!</p>
+<mat-chip-option
+  style="background-color: rgb(255, 187, 0); color: white; font-weight: bold"
+  selected
+  >PENDING TODOS</mat-chip-option
+>
+<div *ngIf="todolist.length == 0">NO PENDING TODO's TO DISPLAY</div>
+<div *ngIf="todolist.length > 0">
+  <ng-container *ngFor="let todo of todolist">
+    <app-todo [todo]="todo"></app-todo>
+  </ng-container>
+</div>
